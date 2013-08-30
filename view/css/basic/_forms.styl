@@ -1,0 +1,24 @@
+input,
+textarea,
+select,
+option{
+    color: $form-c;
+    background: $form-bgc;
+    border-color: $form-bdc;
+}
+textarea {
+    overflow: auto;
+    vertical-align: top;
+    resize: vertical;
+}
+
+input,
+textarea{
+    placeholder($placeholderColor);
+    border: 1px solid $form-bdc;
+}
+
+button {
+    width: auto;
+    overflow: visible;
+}

@@ -1,0 +1,35 @@
+.i-clearfix{
+    @extend .clearfix;
+}
+.i-relative{
+    position: relative;
+}
+
+.i-hide {
+    display: none !important;
+}
+.i-show {
+    display: block;
+}
+.i-text-hide {
+    font: 0/0 serif;
+    text-shadow: none;
+    color: transparent;
+}
+
+.i-invisible {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+    visibility: hidden;
+}
+
+.i-container{
+    $p = 10px;
+    padding-left: $p;
+    padding-right: $p;
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 960px - ($p * 2);
+    max-width: 1280px - ($p * 2);
+}

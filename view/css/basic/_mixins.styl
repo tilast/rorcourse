@@ -1,0 +1,344 @@
+// всякие прикольные миксины для разметки
+i-left($w = auto){
+    float: left;
+    width: $w;
+}
+
+i-right($w = auto){
+    float: right;
+    width: $w;
+}
+
+centered($w = auto){
+    display: block;
+    width: $w;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+// удобный миксин для задания размера, особенно для изначально инлайновых элементов типа ссылок
+size($height = auto, $width = auto){
+    display: block;
+    height: $height;
+    width: $width;
+}
+square($long = auto){
+    size($long, $long);
+}
+
+// очистка потока
+.clearfix {
+    *zoom: 1;
+    &:before,
+    &:after {
+        display: table;
+        content: "";
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+.clearfix2 {
+    -height: 1%;
+    *zoom: 1;
+    display: table;
+
+    &:after {
+        content: '. . . . . . . . . . .';
+        // Opera 12
+        display: block;
+        word-spacing: 99in;
+        height: 0;
+        overflow: hidden;
+
+        // Лекарство бага с оступом в Opera
+        font-size: 0.05em;
+        line-height: 0.05em;
+    }
+}
+
+
+// миксин для ссылок, удобно использовать для переопределений
+href($color = $linkColor, $colorHover = $linkColorHover, $colorActive = $linkColorActive, $colorVisited = $linkColorVisited){
+    &:visited{
+        color: $colorVisited;
+    }
+    &:link{
+        color: $color;
+    }
+    &:hover{
+        color: $colorHover;
+    }
+    &:active{
+        color: $colorActive;
+    }
+}
+
+// для псевдоссылок
+pseudo($color = $linkColor, $colorHover = $linkColorHover, $colorActive = $linkColorActive, $type = dashed){
+href($color, $colorHover, $colorActive, $color);
+    text-decoration: none;
+    cursor: pointer;
+    border-bottom: 1px $type $color;
+
+    &:hover{
+        text-decoration: none;
+        border-color: $colorHover;
+    }
+    &:active{
+        border-color: $colorActive;
+    }
+}
+
+// часто бывает, что ссылка больше чем текст
+pseudo-span($color = $linkColor, $colorHover = $linkColorHover, $colorActive = $linkColorActive, $type = dashed){
+    text-decoration: none;
+    cursor: pointer;
+    href($color, $colorHover, $colorActive, $color);
+
+    span{
+        border-bottom: 1px $type $color;
+    }
+
+    &:hover{
+        span{
+            text-decoration: none;
+            border-color: $colorHover;
+        }
+    }
+    &:active{
+        span{
+            border-color: $colorActive;
+        }
+    }
+}
+
+// настройка цвета выделения
+select-color($color =  $selectionColor) {
+    * {
+        &::selection { background: $color; }
+        &::-moz-selection { background: $color; } // Firefox
+        &::-webkit-selection { background: $color; } // Safari и Chrome
+
+        img {
+            &::selection { background: transparent; }
+            &::-moz-selection { background: transparent; } // Firefox
+            &::-webkit-selection { background: transparent; } // Safari и Chrome
+        }
+    }
+}
+
+// цвет текста в плейсхолдере
+placeholder($color = $textColor){
+&::-webkit-input-placeholder{
+    color: $color;
+}
+&:-moz-placeholder{
+    color: $color;
+}
+&.placeholder{ // jquery placeholder
+    color: $color;
+}
+}
+
+// прозрачный фон
+rgbaa($hex, $alpha = .8) {
+    background: $hex;
+    background: hsla(hue($hex), saturation($hex), lightness($hex), $alpha);
+}
+
+// прозрачность
+// @include opacity(0.5);
+
+
+// прозрачный однотонный фон
+translucent($color = $white, $alpha = 0.85) {
+    background-color: hsla(hue($color), saturation($color), lightness($color), $alpha);
+}
+
+text-shadow($x = 1px, $y = 1px, $blur = 3px, $color = $black) {
+    text-shadow: $x $y $blur $color;
+    filter: dropshadow(color=$color, offx=$x, offy=$y);
+}
+
+// тенюшка
+box-shadow($x = 0, $y = 1px, $blur = 3px, $c = #ffffff, $a = .25) {
+    $shadow = $x $y $blur rgba(hue($c), saturation($c), lightness($c), $a);
+    -webkit-box-shadow: $shadow;
+    -moz-box-shadow: $shadow;
+    box-shadow: $shadow;
+}
+// внутреняя тень
+box-shadow-inset($x = 0, $y = 0, $blur = 1px, $c = #ffffff) {
+    $shadow = inset $x $y $blur hsla(hue($c), saturation($c), lightness($c), 1);
+    -webkit-box-shadow: $shadow;
+    -moz-box-shadow: $shadow;
+    box-shadow: $shadow;
+}
+
+// скругленные уголки
+border-radius($radius = 5px) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    border-radius: $radius;
+}
+border-top-left-radius($radius = 5px) {
+    -webkit-border-top-left-radius: $radius;
+    -moz-border-radius-topleft: $radius;
+    border-top-left-radius: $radius;
+}
+border-top-right-radius($radius = 5px) {
+    -webkit-border-top-right-radius: $radius;
+    -moz-border-radius-topright: $radius;
+    border-top-right-radius: $radius;
+}
+border-bottom-left-radius($radius = 5px) {
+    -webkit-border-bottom-left-radius: $radius;
+    -moz-border-radius-bottomleft: $radius;
+    border-bottom-left-radius: $radius;
+}
+border-bottom-right-radius($radius = 5px) {
+    -webkit-border-bottom-right-radius: $radius;
+    -moz-border-radius-bottomright: $radius;
+    border-bottom-right-radius: $radius;
+}
+
+// градиенты
+gradient-horizontal($startColor = $gray, $endColor = lighten($gray, 15)) {
+    background-color: $endColor;
+    background-image: -moz-linear-gradient(left, $startColor, $endColor); // FF 3.6+
+    background-image: -ms-linear-gradient(left, $startColor, $endColor); // IE10
+    background-image: -webkit-gradient(linear, 0 0, 100% 0, from($startColor), to($endColor)); // Safari 4+, Chrome 2+
+    background-image: -webkit-linear-gradient(left, $startColor, $endColor); // Safari 5.1+, Chrome 10+
+    background-image: -o-linear-gradient(left, $startColor, $endColor); // Opera 11.10
+    background-image: linear-gradient(left, $startColor, $endColor); // native
+    background-repeat: repeat-x;
+    filter: 'progid:DXImageTransform.Microsoft.gradient(startColorstr=' + $startColor + ', endColorstr=' + $endColor + ', GradientType=1)'; // IE9 and down
+}
+gradient-vertical($startColor = $gray, $endColor = lighten($gray, 15)) {
+    background-color: mix($startColor, $endColor, 60%);
+    background-image: -moz-linear-gradient(top, $startColor, $endColor); // FF 3.6+
+    background-image: -ms-linear-gradient(top, $startColor, $endColor); // IE10
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from($startColor), to($endColor)); // Safari 4+, Chrome 2+
+    background-image: -webkit-linear-gradient(top, $startColor, $endColor); // Safari 5.1+, Chrome 10+
+    background-image: -o-linear-gradient(top, $startColor, $endColor); // Opera 11.10
+    background-image: linear-gradient(top, $startColor, $endColor); // native
+    background-repeat: repeat-x;
+    filter: 'progid:DXImageTransform.Microsoft.gradient(startColorstr=' + $startColor + ', endColorstr=' + $endColor + ', GradientType=0)'; // IE9 and down
+}
+
+// не забываем ИСПОЛЬЗОВАТЬ резет градиента, чтобы они в ИЕ не наследовались
+//.reset-filter() {
+//  filter: e(%("progid:DXImageTransform.Microsoft.gradient(enabled = false)"));
+//}
+
+
+// убираем баги горячо любимого
+.inline-block {
+    display: -moz-inline-stack; // ff2
+    display: inline-block;
+    zoom: 1; // Internet Explorer 6
+    *display: inline; // Internet Explorer
+}
+// миксин для удаления пробелов при строчных блоках
+ib($value = -4px){
+    letter-spacing: $value;
+    word-spacing: $value;
+}
+
+
+// добавляем плавности для :hover и :active событий, для более сложных транзишинов,
+// лучше написать отдельную функцию, но обычно они не юзаются
+transition($time = 0.5s, $type = linear) {
+    -moz-transition: all $time $type; // Firefox 4
+    -ms-transition: all $time $type; // Internet Explore 9
+    -o-transition: all $time $type; // Opera
+    -webkit-transition: all $time $type; // Safari and Chrome
+    transition: all $time $type;
+}
+
+// поворот блока в градусах
+transformm($rotate = 45deg) {
+    -webkit-transform: rotate($rotate);
+    -moz-transform: rotate($rotate);
+    -ms-transform: rotate($rotate);
+    -o-transform: rotate($rotate);
+    transform: rotate($rotate);
+}
+//
+opacity($opacity) {
+  opacity: $opacity / 100;
+  //filter: ~"alpha(opacity=@{opacity})";
+}
+
+background-size(){
+	-webkit-background-size: arguments;
+	-moz-background-size: arguments;
+	background-size: arguments;
+}
+
+// css 3 анимация
+
+
+
+anime() {
+  -webkit-animation-name: 'varr'; // имя анимации
+  -webkit-animation-duration: 5s; // длительность анимации
+  -webkit-animation-timing-function:linear; // передвижение анимации
+  -webkit-animation-delay:2s; // задержка до анимации
+  -webkit-animation-iteration-count:infinite; // количество повторений анимации
+  -webkit-animation-direction:alternate; // alternate -в прямом и обратном направлениях или normal
+  -webkit-animation-play-state:running; // running и paused работает ли анимация или стоит на паузе
+
+  -o-animation-name: 'varr';
+  -o-animation-duration: 5s;
+  -o-animation-timing-function:linear;
+  -o-animation-delay:2s;
+  -o-animation-iteration-count:infinite;
+  -o-animation-direction:alternate;
+  -o-animation-play-state:running;
+
+  -moz-animation-name: 'varr';
+  -moz-animation-duration: 5s;
+  -moz-animation-timing-function:linear;
+  -moz-animation-delay:2s;
+  -moz-animation-iteration-count:infinite;
+  -moz-animation-direction:alternate;
+  -moz-animation-play-state:running;
+
+  -ms-animation-name: 'varr';
+  -ms-animation-duration: 5s;
+  -ms-animation-timing-function:linear;
+  -ms-animation-delay:2s;
+  -ms-animation-iteration-count:infinite;
+  -ms-animation-direction:alternate;
+  -ms-animation-play-state:running;
+
+  animation-name: 'varr';
+  animation-duration: 5s;
+  animation-timing-function:linear;
+  animation-delay:2s;
+  animation-iteration-count:infinite;
+  animation-direction:alternate;
+  animation-play-state:running;
+}
+
+@keyframes varr {
+  from {
+    top: 50px;
+    left: 0px;
+    //animation-timing-function: easy-in-out;
+  }
+  50% {
+    top: 150px;
+    left: 100px;
+    font-size: 50px;
+    //animation-timing-function: easy-in-out;
+  }
+  to {
+    top: 150px;
+    left: 10px;
+    //animation-timing-function: easy-in-out;
+  }
+}

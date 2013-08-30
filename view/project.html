@@ -1,0 +1,22 @@
+<li class="project js-project" data-project_id="[%--project_id--%]">
+	<div class="project__header">
+		<div class="project__header__calendar"></div>
+		<span class="project__header__title js-project-title">[%--project_name--%]</span>
+		<div class="project__header__right">
+			<button class="project__header__right__item project__header__right__edit js-edit-project"></button>
+			<button class="project__header__right__item project__header__right__delete js-delete-project"></button>
+		</div>
+	</div>
+	<form class="js-new-task__form">
+		<div class="project__new-task js-new-task">
+			<div class="project__new-task__plus"></div>
+			<form>
+				<input type="text" placeholder="Input task" class="project__new-task__field js-new-task__value">
+				<button class="project__new-task__button js-new-task__add">Add Task</button>
+			</form>
+		</div>
+	</form>
+	<ul class="project__tasks js-tasks">
+		[%--project_tasks--%]
+	</ul>
+</li>

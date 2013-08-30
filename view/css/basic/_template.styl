@@ -1,0 +1,363 @@
+body {
+	background: url("../images/bg.jpg") no-repeat #2C3E26;
+	font-family: Arial, Helvetica, "sans serif";
+}
+
+label:hover {
+	cursor: pointer;
+}
+
+.checkbox {
+	&__elem {
+		display: none;
+	}
+	&__img {
+		width: 22px;
+		height: 22px;
+		display: block;
+		background: url("../images/checkbox.gif");
+		cursor:pointer;
+	}
+	&__img__checked {
+		background-position: bottom;
+	}
+}
+
+#wrapper {
+	width: 700px;
+	margin: 0 auto 0 auto;
+	padding-bottom: 30px;
+}
+
+.header {
+	height: 130px;
+	text-align: center;
+	margin-top: 30px;
+
+	&__h1 {
+		font-weight: bold;
+		font-size: 30px;
+		display: block;
+		color: $white;
+		text-shadow: 1px 1px 1px #ededed;
+	}
+
+	&__h2 {
+		font-size: 18px;
+		color: $white;
+		text-shadow: 1px 1px 1px #ededed;
+	}
+}
+
+.project {
+	margin-top: 20px;
+	border-bottom-left-radius(5px);
+	border-bottom-right-radius(5px);
+	box-shadow(0px 1px 1px #ececec);
+	background: #fefefe;
+	border: 1px solid #555;
+	transition(2s);
+
+	&__header {
+		min-height: 50px;
+		cursor: pointer;
+		gradient-vertical(#25BD28, #1E8927);
+		border: 1px solid #275634;
+		box-shadow-inset(0px, 0px, 5px, #58AC4F);
+		position: relative;
+
+		&__calendar {
+			width: 30px;
+			height: 30px;
+			background: url('../images/calendar.png');
+			@extend.inline-block;
+			position: absolute;
+			left: 10px;
+			top: 10px;
+		}
+		&__title {
+			@extend.inline-block;
+			color: #fdfdfd;
+			vertical-align: middle;
+			text-shadow: 1px 1px 1px #ccc;
+			font-size: 20px;
+			position: relative;
+			margin-top: 8px;
+			left: 50px;
+			width: 540px;
+			height: 20px;
+			padding: 5px;
+			padding-bottom: 10px;
+
+			&__edit {
+				background: rgba(0, 0, 0, 0.1);
+				border:0;
+				height: 20px;
+			}
+			&__edit:focus {
+				outline: 0;
+				box-shadow(0px, 0px, 2px, #fff);
+			}
+		}
+		&__right {
+			@extend.inline-block;
+			position: absolute;
+			right: 10px;
+			top: 10px;
+			display: none;
+
+			&__item {
+				@extend.inline-block;
+				width: 30px;
+				height: 30px;
+				background: #fff;
+				border: 0;
+			}
+			&__edit {
+				background: url('../images/project_edit.png');
+			}
+			&__delete {
+				background: url('../images/project_delete.png');
+			}
+		}
+	}
+
+	&:hover &__header__right {
+		display: block;
+	}
+
+	&__new-task {
+		height: 50px;
+		gradient-vertical(#fff, #ddd);
+		border: 1px solid #999;
+		position: relative;
+
+		&__wrong {
+			border: 1px solid red;
+		}
+
+		&__plus {
+			width: 30px;
+			height: 30px;
+			background: url('../images/plus.png');
+			@extend.inline-block;
+			position: absolute;
+			left: 10px;
+			top: 10px;
+		}
+
+		&__field {
+			@extend.inline-block;
+			margin-left: 50px;
+			position: relative;
+			top: 10px;
+			padding: 5px;
+			color: #666;
+			font-style: italic;
+			width: 480px;
+			box-shadow-inset(0px, 2px, 1px, #ddd);
+			outline: 0;
+			border-top-left-radius(3px);
+			border-bottom-left-radius(3px);
+		}
+
+		&__button {
+			@extend.inline-block;
+			width: 140px;
+			position: absolute;
+			top:10px;
+			background: red;
+			height:	32px;
+			border:0;
+			border-top-right-radius(6px);
+			border-bottom-right-radius(6px);
+			color: #fdfdfd;
+			text-shadow: 1px 1px 1px #ccc;
+			gradient-vertical(#2cd137, #0a702e);
+			border: 1px solid #999;
+
+			&:hover {
+				gradient-vertical(lighten(#2cd137, 10), lighten(#0a702e, 10));
+			}
+			&:active {
+				gradient-vertical(darken(#2cd137, 5), darken(#0a702e, 5));
+			}
+		}
+	}
+
+	&__add {
+		width: 150px;
+		height: 40px;
+		cursor: pointer;
+		gradient-vertical(#25BD28, #1E8927);
+		border: 1px solid #275634;
+		box-shadow-inset(0px, 0px, 5px, #58AC4F);
+		color: #fdfdfd;
+		text-shadow: 1px 1px 1px #ccc;
+		display: block;
+		margin: 20px auto 0 auto;
+
+		&:hover {
+			gradient-vertical(lighten(#25BD28, 10), lighten(#1E8927, 10));
+		}
+
+		&:active {
+			gradient-vertical(darken(#25BD28, 5), darken(#1E8927, 5));
+		}
+
+		&__little {
+			width: 100px;
+			height: 40px;
+			font-size: 15px;
+			margin-top: 5px;
+		}
+	}
+
+	&__new-name {
+		display: block;
+		width: 250px;
+		height: 25px;
+		padding: 5px;
+		margin: 5px auto 0 auto;
+		background: rgba(255, 255, 255, 0.3);
+		color: $white;
+	}
+	&__nothing {
+		background: rgba(255, 255, 255, 0.9);
+		width: 300px;
+		height: 70px;
+		line-height: 70px;
+		text-align: center;
+		margin: auto;
+		&__text {
+			font-size: 20px;
+		}
+	}
+}
+
+.task {
+	cursor: pointer;
+	border-top: 1px solid #ddd;
+	transition(0.3s);
+
+	&:last-child {
+		border-bottom-left-radius(5px);
+		border-bottom-right-radius(5px);
+	}
+
+	&:hover {
+		background: #FCFED5;
+	}
+
+	&:hover .task__right{
+		@extend.inline-block;
+	}
+
+	&__nothing {
+		text-align: center;
+		padding: 15px;
+		font-size: 18px;
+		color: #888;
+	}
+
+	&__left {
+		@extend.inline-block;
+		position: relative;
+		width: 50px;
+		min-height: 50px;
+		vertical-align: top;
+	}
+	&__center {
+		border-left: 1px double #C41E0F;
+		border-right: 1px solid #ddd;
+		@extend.inline-block;
+		width: 490px;
+		box-sizing(border-box);
+		min-height: 25px;
+		vertical-align: top;
+		padding: 10px;
+		padding-top: 15px;
+		color: #888;
+		position: relative;
+
+		&__input {
+			width: 450px;
+			overflow: hidden;
+			font-family: Arial, Helvetica, "sans serif";
+			font-size: 18px;
+			color: #888;
+		}
+		&__hidden-div {
+			width: 420px;
+			height: auto;
+			display: none;
+		}
+	}
+	&__right {
+		transition(0.3s);
+		display: none;
+		width: 120px;
+		min-height: 50px;
+		vertical-align: top;
+		color: #888;
+		opacity: 0;
+
+		&__item {
+			width: 20px;
+			height: 20px;
+			@extend.inline-block;
+			padding-right: 4px;
+			border-right: 1px solid #ccc;
+			vertical-align: middle;
+			position: relative;
+			left: 20px;
+			top: 15px;
+
+			&:last-child {
+				border:0;
+			}
+		}
+
+		&__edit {
+			background: url("../images/task_edit.png") no-repeat;
+		}
+
+		&__delete {
+			background: url("../images/task_delete.png") no-repeat;
+		}
+	}
+
+	&__checkbox {
+		position: absolute;
+		top: 14px;
+		left: 12px;
+	}
+
+}
+
+.footer {
+	width: 700px;
+}
+
+.big-loader {
+	width: 66px;
+	height: 66px;
+	margin: auto;
+	background: url("../images/big-loader.gif") rgba(255, 255, 255, 0.5) center no-repeat;
+	padding: 10px;
+	border-radius(5px);
+}
+.small-loader {
+	width: 50px;
+	height: 6px;
+	background: url("../images/small-loader.gif");
+
+	&__task-edit {
+		position: absolute;
+		right:55px;
+		bottom: 20px;
+	}
+	&__task-add {
+
+	}
+}
