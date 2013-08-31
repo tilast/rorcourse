@@ -12,13 +12,18 @@ class C_Base extends Controller
     }
     public function onInput()
     {
-		$this->main->badDebugFunction();
         $this->content = $this->main->getProjects(null, true);
     }
     public function onOutput()
     {
 		$global_header = $this->Template('view/global_header.php');
-        $index = $this->Template('view/index.php', array("global_header" => $global_header, 'projects' => $this->content));
+        $index = $this->Template('view/index.php',
+			array(
+				"global_header" => $global_header,
+				'projects' => $this->content,
+				'queries' => $this->main->customQuery()
+			)
+		);
 		echo $index;
     }
 }

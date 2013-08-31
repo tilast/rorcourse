@@ -113,3 +113,4 @@ label:hover{cursor:pointer}
 .big-loader{width:66px;height:66px;margin:auto;background:url("../images/big-loader.gif") rgba(255,255,255,0.5) center no-repeat;padding:10px;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px}
 .small-loader{width:50px;height:6px;background:url("../images/small-loader.gif");}
 .small-loader__task-edit{position:absolute;right:55px;bottom:20px}
+.task-queries{width:600px;margin:20px auto;padding:20px;background:#fff;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;-webkit-box-shadow:0 0 10px #fefefe 1px 3px rgba(0,0,255,0.25);-moz-box-shadow:0 0 10px #fefefe 1px 3px rgba(0,0,255,0.25);box-shadow:0 0 10px #fefefe 1px 3px rgba(0,0,255,0.25)}

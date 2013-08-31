@@ -7,8 +7,8 @@ class M_DB
 	{
 		try
 		{
-			if(!file_exists("model/todolists2.db")) {
-				$this->dbh = new PDO("sqlite:model/todolists2.db");
+			if(!file_exists("model/todolists.db")) {
+				$this->dbh = new PDO("sqlite:model/todolists.db");
 				$this->dbh->beginTransaction();
 				$this->dbh->exec("
 					CREATE TABLE projects(
@@ -27,14 +27,14 @@ class M_DB
 				");
 				$this->dbh->exec("INSERT INTO projects(name) VALUES('25.08 planes')");
 				$this->dbh->exec("INSERT INTO projects(name) VALUES('26.08 planes')");
-				$this->dbh->exec("INSERT INTO tasks(content, project_id, status) VALUES('go to meeting with Pavlo Lisovyi', 1, 1)");
+				$this->dbh->exec("INSERT INTO tasks(content, project_id, status) VALUES('go to meeting with Pavlo', 1, 1)");
 				$this->dbh->exec("INSERT INTO tasks(content, project_id) VALUES('end development of this site', 1)");
 				$this->dbh->exec("INSERT INTO tasks(content, project_id) VALUES('meet Sasha', 2)");
 				$this->dbh->exec("INSERT INTO tasks(content, project_id) VALUES('go to work', 2)");
 				$this->dbh->exec("INSERT INTO tasks(content, project_id) VALUES('walk with Sasha', 2)");
 				$this->dbh->commit();
 			} else {
-				$this->dbh = new PDO("sqlite:model/todolists2.db");
+				$this->dbh = new PDO("sqlite:model/todolists.db");
 			}
 		}
 		catch(PDOException $ex)
@@ -59,6 +59,9 @@ class M_DB
 		try
 		{
 			$stmt = $this->dbh->prepare($query);
+			if(!$stmt) {
+				return false;
+			}
 			$stmt->execute();
 			$arr = array();
 			if($stmt) {

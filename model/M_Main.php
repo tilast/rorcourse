@@ -122,10 +122,16 @@ class M_Main
 		return $this->db->Delete('tasks', sprintf("task_id=%d", $task_id));
 	}
 
-	public function badDebugFunction() {
-		//$join = ($select_tasks) ? "INNER JOIN tasks WHERE projects.project_id=tasks.project_id" : '';
+	/**
+	 * bad function
+	 * only for test task
+	 * @param $num
+	 * @return array
+	 */
+	public function customQuery($num = null) {
+		$result = array();
 
-		$query2 = "	SELECT COUNT('task_id')
+		$queries[2] = "SELECT COUNT('task_id')
 					AS count, tasks.project_id, projects.name
 					FROM tasks
 					LEFT JOIN projects
@@ -134,21 +140,22 @@ class M_Main
 					ORDER BY count
 					DESC";
 
-		$query3 = " SELECT COUNT('task_id')
+		$queries[3] = "SELECT COUNT('task_id')
 					AS count, tasks.project_id, projects.name
 					FROM tasks
 					LEFT JOIN projects
 					ON projects.project_id=tasks.project_id
-					GROUP BY projects.name";
+					GROUP BY projects.name
+					ORDER BY projects.name";
 
-		$query4 = " SELECT *
+		$queries[4] = "SELECT *
 		 			FROM tasks
 		 			INNER JOIN projects
 		 			WHERE projects.name
 		 			LIKE 'n%'
 		 			AND projects.project_id=tasks.project_id";
 
-		$query5 = "	SELECT COUNT('project_id')
+		$queries[5] = "SELECT COUNT('project_id')
 					AS count, tasks.project_id, projects.name
 					FROM tasks
 					JOIN projects
@@ -157,7 +164,7 @@ class M_Main
 					LIKE '%a%'
 					GROUP BY projects.project_id";
 
-		$query6 = "	SELECT *
+		$queries[6] = "SELECT *
 					FROM tasks
 					JOIN tasks
 					AS tasks2
@@ -165,14 +172,28 @@ class M_Main
 					WHERE tasks.task_id <> tasks2.task_id
 					ORDER BY content";
 
-		$query8 = "	SELECT COUNT(*)
+		$queries[8] = "SELECT COUNT(*)
 					AS count, projects.project_id, projects.name
 					FROM tasks
 					JOIN projects
 					ON projects.project_id=tasks.project_id
 					WHERE tasks.status=1
 					GROUP BY projects.project_id";
-		//var_dump($query);
-		//var_dump($this->db->Select($query));
+
+		if($num == null) {
+			foreach($queries as  $key => $query) {
+				$result[$key] = array(
+					"result" => $this->db->Select($query),
+					"query" => $query
+				);
+			}
+		} elseif(isset($queries[$num])) {
+			$result[$num] = array(
+				"result" => $this->db->Select($queries[$num]),
+				"query" => $queries[$num]
+			);
+		}
+
+		return $result;
 	}
 }

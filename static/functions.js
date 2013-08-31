@@ -155,15 +155,13 @@ $(document).on("ready", function() {
             var $project_id = parseInt($(this).parents(".js-project").data("project_id"));
 
 
-            var self = $(".js-new-task");
+            var self = $(this).parents(".js-new-task");
             if($value && $project_id) {
                 var result = connectServer({
                     action: 'add',
                     type: 'tasks',
                     id: $project_id,
                     content: $value
-                }, function() {
-                    self.append(smallLoader.replace("[%--small_loader_context--%]", 'small-loader__task-add'));
                 });
 
                 if(result.success) {
