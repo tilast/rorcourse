@@ -9,7 +9,6 @@ class C_Ajax extends Controller
     }
     public function onInput()
     {
-		sleep(2);
 		$action = (isset($_POST['action'])) ? $_POST['action'] : null;
 		$type = (isset($_POST['type'])) ? $_POST['type'] : null;
 		$id = (isset($_POST['id'])) ? $_POST['id'] : null;
