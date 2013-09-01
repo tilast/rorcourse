@@ -59,7 +59,7 @@ $(document).on("ready", function() {
         }
     }
     // if we don't have projects
-    if(!jsonContent.content.length) {
+    if(!jsonContent || !jsonContent.content.length) {
         $(".js-projects").append(noProjects);
     }
 
@@ -287,6 +287,10 @@ $(document).on("ready", function() {
             $(this).parent().remove();
         });
 
+    $(".js-task-queries-button").on("click", function() {
+        $(".js-task-queries").toggle();
+    });
+
     return false;
 });
 
@@ -321,6 +325,7 @@ function connectServer(obj, loader, removeLoader) {
     if(removeLoader) {
         removeLoader();
     }
+
     return result;
 }
 

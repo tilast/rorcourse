@@ -9,10 +9,10 @@ class C_Ajax extends Controller
     }
     public function onInput()
     {
-		sleep(2);
 		$action = (isset($_POST['action'])) ? $_POST['action'] : null;
 		$type = (isset($_POST['type'])) ? $_POST['type'] : null;
 		$id = (isset($_POST['id'])) ? $_POST['id'] : null;
+
 		if($action == 'view') {
 			switch($type) {
 				case 'projects' :
@@ -59,6 +59,6 @@ class C_Ajax extends Controller
 		$result = array('success' => $success);
 		$result['content'] = $this->content;
 
-		echo json_encode($result, true);
+		echo json_encode($result);
 	}
 }
