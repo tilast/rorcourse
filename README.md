@@ -10,3 +10,6 @@ You have to change directory of this project on your server in file *static/conf
 
 ## SQL Task
 SQL Task in the bottom of page
+
+## Online
+http://tilast.pp.ua/rorcourse/
